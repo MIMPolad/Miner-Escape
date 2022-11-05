@@ -1,0 +1,6 @@
+CREDITS:
+
+Calen Carter (Bluto) - Level Design, Level Tester
+Riley Fuller (Drip) - Level Design, Level Tester
+Kellen Mezines (Vibe)- UI/UX Design, Development
+Jack Holland (Redwood) - Development
