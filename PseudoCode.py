@@ -5,8 +5,8 @@ Selection = input()
 do
   match
     case "1"
-      #VARIABLES
-        array[]
+#VARIABLES
+        map = []
         p_start = (16,0)
         #first index is number of torches second number represents number of dynamite
         p_item = [ 1,0 ]
@@ -17,7 +17,7 @@ do
         num_turns = 400
         pROW = 16
         pCOL = 0
-      #BEGIN CODE
+#BEGIN CODE
         while(escape = false):
           step = 1
 
@@ -40,7 +40,7 @@ do
 
 #If LEFT AND RIGHT AVALIABLE
           elif ((pROW + 1, pCOL) = ' ' and (pROW - 1, pCOL) = ' '):
-            if p_item[1] >= 1 and p_item[2] > 1:
+            if p_item[1] >= 1:
                 print("You have 4 options: ")
                 print("Option 1: Go LEFT")
                 print("Option 2: Go RIGHT")
@@ -54,7 +54,7 @@ do
 
 #IF LEFT AND STRAIGHT
           elif ((prow - 1, pCOL) = ' ' and (pROW, pCOL + 1) = ' '):#If left and straight
-            if p_item[1] >= 1 and p_item[2] > 1:
+            if p_item[1] >= 1:
                 print("You have 4 options: ")
                 print("Option 1: Go LEFT")
                 print("Option 2: Go STRAIGHT")
@@ -114,9 +114,7 @@ do
             elif p_item[0] == 0: #If have torches but no dynamite
                 print("You have 1 option: ")
                 print("Option 1: Go LEFT")
- #CASE 2 is for HARD MODE
     case "2"
- #CASE 3 is for QUITING
     case "3"
       quit = true
 
