@@ -7,33 +7,33 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
   Selection = input()
   if Selection ==  "1" #EASY MODE
 #VARIABLES
-        map = []
-        p_start = (16,0)
-        #first index is number of torches second number represents number of dynamite
-        p_item = [ 1,0 ]
-        start_location = (16, 0)
-        step = 1
-        escape = False
-        checkpoint = (16, 0) #checkpoint that changes at certain points
-        checkpoint_curr_steps = 0
-        step_count = 1
-        num_turns = 400
-        pROW = 16
-        pCOL = 0
-        torch_active = False
-        torch_time = 0
-        curr_point = (pROW, pCOL)
-        previous_step = (0,0)
-        death = False
+map = []
+#p_start = (16,0) Starting point, later utilized with start_location
+#first index is number of torches second number represents number of dynamite
+p_item = [ 1, 0, 0]
+start_location = (16, 0)
+step = 1
+escape = False
+checkpoint = (16, 0) #checkpoint that changes at certain points
+checkpoint_curr_steps = 0
+#step_count = 1 step counter, used step instead
+num_turns = 400
+pROW = 16
+pCOL = 0
+torch_active = False
+torch_time = 0
+curr_point = (pROW, pCOL)
+previous_step = (0,0)
+death = False
 #BEGIN CODE
-#NORTH IS NORTH (player moves one EAST)
-#LEFT IS WEST (player moves one up)
-#RIGHT IS EAST (plaer moves one down)
-        while(escape != True or death != True):
+#RIGHT IS NORTH (player moves one right)
+#UP IS WEST (player moves one up)
+#DOWN IS EAST (plaer moves one down)
+        while(escape != True and death != True):
 
 
 #If you hit a checkpoint save it 
-          if Checkpoints(curr_point) == True:
+          if Checkpoints(curr_point):
             checkpoint = curr_point
             checkpoint_curr_steps = step_count
 
@@ -46,22 +46,22 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
 
 
 #If the room you enter is loot room        
-          elif Loot_Room(curr_point) == True:
-            loot = rand_init(0,3)
-            if loot == 0:
+          elif Loot_Room(curr_point):
+            loot = rand_init(0,10)
+            if loot <= 4:
               print("You found a torch")
               p_item[0] + 1
-            elif loot == 1:
+            elif loot > 4 and loot < 9:
               print("You found a dynamite")
               p_item[1] + 1
-            elif loot == 2:
+            elif loot == 9:
               p_item[2] + 1
               print("You found a pickaxe")
             else
               print("You found nothing")
-            map[curr_point] = 0
-            if loot == 1 or loot == 2:
-              if loot == 1:
+            #map[curr_point] = 0 I think we should update the move and map coords at the end of the while loop
+            if p_item[1] or p_item[2]:
+              if p_item[1]:
                 print("Would you like to retrace steps to use the dynamite on the entrance? ")
                 print("Option 1: YES")
                 print("Option 2: NO")
@@ -69,17 +69,17 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
                 if choice == 1:                                                                                               #If you choose to go back to the beginning
                   steps = steps * 2                                                                                           #Retrace steps (double them)
                   curr_point = start_location                                                                                 #Go back to start location
-                  if torch_active:
-                    print("You lit the dynamite and escaped!!!")
+                  if p_item[0]:
+                    print("You use a torch to light the dynamite, it clears the debris and you escape!")
                     escape = True
                   else:
                     dynamite_boom_chance = rand(0,3)                                                                          #25 chance for the dynamite to work without torch when thrown
                     if dynamite_boom_chance == 3:
-                      print("The Dynamite blew up when you threw it at the wall. You have escaped!!!")
+                      print("You throw the dynamite at the wall and it miraculously explodes, you escape!")
                       escape = True
                     else:                                                                                                     #If the dynamite didn't light when you threw it at the wall
-                      print("The dynamite wasn't lit and you have lost the dynamite.")
-                      p_item[1] - 1
+                      print("The dynamite wasn't lit and was destroyed in your attempt to escape.")
+                      p_item[1] -= 1
                       print("Would you like to return to where you were and continue or restart finding your way through again?")
                       print("Option 1: Go back to where you left off.")
                       print("Option 2: Restart finding way from beginning.")
@@ -90,8 +90,8 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
                         curr_point = start_location                                                                                      #Reset the map as if they haven't traveled anywhere
                         for i in range(20):
                           for j in range(38):
-                            if map(i,j) == 0:
-                              map(i,j) = 1
+                            if map[i][j] == 0:
+                              map[i][j] = 1
                         map[curr_point] = 0
 
                 elif choice2 = 2:
@@ -102,24 +102,26 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
                 print("Option 2: NO")
                 choice2 = input()
                 if choice2 == 1:
-                  if(num_turns - step >= 50):                                                                                 #If they have longer than 50 turns left they can pickaxe out
-                    print("You pickaxe through and as you go you successfully make your way out!")
+                  if((num_turns - step) >= 50):                                                                                 #If they have longer than 50 turns left they can pickaxe out
+                    print("You dig through the debris with your trusty pick and escape!")
                     escape = True
                   else:
-                    print("You run out of oxygen trying to pickaxe the mine entrance. ")
+                    print("You run out of oxygen trying to pickaxe the mine entrance.")
                     death = True
                 elif choice2 == 2:
+                    #Is there supposed to be some code here to just continue from where they are?
 
             
 #If the room you enter is death room
-          elif Kill_Room(curr_point) == True:
+          elif Kill_Room(curr_point):
             death = True
 
 
 
 
 #If the step led to dead end
-          elif Dead_End(curr_point) == True:
+          elif Dead_End(curr_point):
+            print("You've come to a dead end, you retrace your steps back to the checkpoint.")
             curr_point = checkpoint
             step_count = step_count + (step_count - checkpoint_curr_steps)
 
