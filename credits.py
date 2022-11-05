@@ -18,7 +18,7 @@ def credits(SCREEN,get_font2,main_menu):
         , True, "Black")
         CREDITS_TEXT3 = get_font2(45).render("and Riley Fuller"
         , True, "Black")
-        CREDITS_TEXT4 = get_font2(30).render("Riley Fuller (Drip) - Level Design, Level Tester, Marketing Lead"
+        CREDITS_TEXT4 = get_font2(30).render("Riley Fuller (Drip) - Lead Level Design, Level Tester, Marketing Lead"
         , True, "Blue")
         CREDITS_TEXT5 = get_font2(30).render("Calen Carter (Bluto) - Level Design, Level Tester"
         , True, "Red")
