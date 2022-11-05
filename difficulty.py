@@ -1,4 +1,5 @@
 import pygame,sys
+from print_template import *
 from button import Button
 from game_ended import game_over_lose
 from game_ended import game_over_win
@@ -12,9 +13,8 @@ def Difficulty(SCREEN,get_font,main_menu):
         SCREEN.fill("black") #remove all rendered graphics by replacing it with a black screen
 
         #render select difficulty text
-        DIFF_TEXT = get_font(45).render("Select Difficulty", True, "White")
-        DIFF_RECT = DIFF_TEXT.get_rect(center=(640, 100))
-        SCREEN.blit(DIFF_TEXT, DIFF_RECT)
+        printLine(SCREEN,"Select Difficulty", "White", 45, 640, 100, get_font)
+        
 
         #render easy button
         DIFF_EASY = Button(image=None, pos=(640, 260), 
