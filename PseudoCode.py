@@ -11,7 +11,7 @@ do:
         p_start = (16,0)
         #first index is number of torches second number represents number of dynamite
         p_item = [ 1,0 ]
-        location = (16, 0)
+        start_location = (16, 0)
         step = 1
         escape = False
         checkpoint = (16, 0) #checkpoint that changes at certain points
@@ -37,8 +37,16 @@ do:
             checkpoint = curr_point
             checkpoint_curr_steps = step_count
 
+
+#If you reach the win room at the end of the mine
+          if Win(curr_point) == True:
+            print("Congratulations!")
+            print("You have succesfully escape the mine.")
+            escape = True
+
+
 #If the room you enter is loot room        
-          if Loot_Room(curr_point) == True:
+          elif Loot_Room(curr_point) == True:
             loot = rand_init(0,3)
             if loot == 0:
               print("You found a torch")
@@ -51,8 +59,55 @@ do:
               print("You found a pickaxe")
             else
               print("You found nothing")
-            curr_point = 0 #set the loot room to already visited
-            curr_point = previous_step #go back to before the room
+            curr_point = 0
+            if loot == 1 or loot == 2:
+              if loot == 1:
+                print("Would you like to retrace steps to use the dynamite on the entrance? ")
+                print("Option 1: YES")
+                print("Option 2: NO")
+                choice2 = input()
+                if choice == 1:                                                                                               #If you choose to go back to the beginning
+                  steps = steps * 2                                                                                           #Retrace steps (double them)
+                  curr_point = start_location                                                                                 #Go back to start location
+                  if torch_active:
+                    print("You lit the dynamite and escaped!!!")
+                    escape = True
+                  else:
+                    dynamite_boom_chance = rand(0,3)                                                                          #25 chance for the dynamite to work without torch when thrown
+                    if dynamite_boom_chance == 3:
+                      print("The Dynamite blew up when you threw it at the wall. You have escaped!!!")
+                      escape = True
+                    else:                                                                                                     #If the dynamite didn't light when you threw it at the wall
+                      print("The dynamite wasn't lit and you have lost the dynamite.")
+                      p_item[1] - 1
+                      print("Would you like to return to where you were and continue or restart finding your way through again?")
+                      print("Option 1: Go back to where you left off.")
+                      print("Option 2: Restart finding way from beginning.")
+                      choice3 = input()
+                      if choice3 == 1:
+                        curr_point = previous_step
+                      elif choice3 == 2:                                                                                      #Reset the map as if they haven't traveled anywhere
+                        for i in range(20):
+                          for j in range(38):
+                            if map(i,j) == 0:
+                              map(i,j) = 1
+
+                elif choice2 = 2:
+                  curr_point = previous_step                                                                                  #go back to previous room
+              else:                                                                                                           #You got a pickaxe
+                print("Would you like to retrace your steps to use pickaxe on the entrance?")
+                print("Option 1: YES")
+                print("Option 2: NO")
+                choice2 = input()
+                if choice2 == 1:
+                  if(num_turns - step >= 50):                                                                                 #If they have longer than 50 turns left they can pickaxe out
+                    print("You pickaxe through and as you go you successfully make your way out!")
+                    escape = True
+                  else:
+                    print("You run out of oxygen trying to pickaxe the mine entrance. ")
+                    death = True
+                elif choice2 == 2:
+
             
 #If the room you enter is death room
           elif Kill_Room(curr_point) == True:
@@ -250,7 +305,11 @@ def Checkpoints(curr_point):
     return True
   else:
     return False
-
+def Win(curr_pint):
+  if curr_point == (8,29):
+    return True
+  else:
+    return False
 
 
 
