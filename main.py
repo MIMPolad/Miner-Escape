@@ -12,7 +12,7 @@ def main():
 	external while-loop for replayability. Lot's of work to do...
 	"""
 	#Drip working on filling map array
-	p_item = [1, 0, 0] #Item array: torches, dynamite, pickaxe
+	p_item = [0, 0, 0] #Item array: torches, dynamite, pickaxe
 	start_location = (16, 0) #Starting location for the mine
 	step = 1 #The amount of steps (turns) the player has taken
 	escape = False #lcv to check if miner found the exit
@@ -58,13 +58,13 @@ def main():
 		moves = [0, 0, 0, 0]
 
 		#now we decide to move
-		if(move_up and 'get curr pos - 1 u/d coord == 1'):
+		if(move_up and (cave[getXCoord][getYCoord - 1] == 1)):
 			up_opt = True
-		if(move_down and 'get curr pos +1 u/d coord == 1'):
+		if(move_down and (cave[getXCoord][getYCoord + 1] == 1)):
 			down_opt = True
-		if(move_left and 'get curr pos -1 l/r coord == 1'):
+		if(move_left and (cave[getXCoord - 1][getYCoord] == 1)):
 			left_opt = True
-		if(move_right and 'get curr pos +1 l/r coord == 1'):
+		if(move_right and (cave[getXCoord + 1][getYCoord]) == 1)):
 			right_opt = True
 
 		moves[0] = up_opt
@@ -78,7 +78,7 @@ def main():
 				move_opt += 1
 		
 		choice = -1
-		while(choice < 0 || > 5):
+		while(choice < 0 || > 4):
 			if(move_opt == 4):
 				print("You have 4 Options:")
 				print("Option 1: EAST")
@@ -153,9 +153,9 @@ def main():
 					else
 						usrIn == True
 				"""
-				if(moves[choice] != True):
+				if(moves[choice - 1] != True):
 					print("Please enter a different choice: ")
-				elif(moves[choice):
+				elif(moves[choice - 1]):
 					usrIn == True
 				else:
 					#I don't think we should get here either but fuck
@@ -201,21 +201,27 @@ def main():
 		
 		elif(Loot_Room(curr_point)):
 			#code to find loot
+			tFound = 0
+			dFound = 0
+			pFound = 0
 			loot = random.randint(0,10)
 			if(loot <= 4):
 				print("You find a torch.")
 				p_item[0]++
+				tFound++
 			elif(loot > 4 and < 9):
 				print("You found a stick of dynamite.")
 				p_item[1]++
+				dFound++
 			elif(loot == 9):
 				print("You found a pickaxe.")
 				p_item[2]++
+				pFound++
 			else:
 				print("You didn't find anything.")
 
 			#if they find pick
-			if(p_item[2]):
+			if(p_item[2] and pFound):
 				print("With your pickaxe would you like to go back to the beginning and dig your way out?")
 				print("Option 1: YES")
 				print("Option 2: NO")
@@ -241,7 +247,7 @@ def main():
 					print("You continue with the pick in hand.")
 
 			#if they have the dynamite and no torch
-			if(p_item[1] and !(death) and !(p_item[0])):
+			if(p_item[1] and !(death) and !(p_item[0]) and dFound):
 				print("With your stick of dynamite, would you like to go back to the entrance and attempt to escape?")
 				print("Option 1: YES")
 				print("Option 2: NO")
@@ -308,7 +314,7 @@ def main():
 								startmap()
 
 			#if they have a torch and dynamite
-			if(p_item[1] and !(death) and p_item[0] and torch_lit):
+			if(p_item[1] and !(death) and p_item[0] and dFound):
 				print("With your stick of dynamite, would you like to go back to the entrance and attempt to escape?")
 				print("Option 1: YES")
 				print("Option 2: NO")
@@ -420,6 +426,11 @@ def Win(curr_point):
 	else:
 		return False
 
+def getXCoord():
+	return curr_point[1]
+
+def getYCoord():
+	return curr_point[0]
 
 #should reinitialize map and cp vars, but leave steps the same
 def startmap():
