@@ -250,3 +250,13 @@ def Checkpoints(curr_point):
     return True
   else:
     return False
+
+
+
+
+# Implement stuff 
+# 1. Need to make loot room give option of going back to start if found dynamite
+# 2. Need to make loot room give option of going back to start if found pickaxe
+# 3. Need to copy paste function from first if statement to the rest of them and specify for each
+# 4. Fix any other mistakes 
+# 5. Good Luck to Redwood and Vibe. The brightside is Drip is a good cheerleader!
