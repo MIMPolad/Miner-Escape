@@ -4,7 +4,7 @@ from button import Button
 from game_ended import game_over_lose
 from game_ended import game_over_win
 from game import easy_mode
-#from hard_mode import hard_mode
+from consoleGame import *
 
 def Difficulty(SCREEN,get_font,main_menu):
     while True:
@@ -47,7 +47,7 @@ def Difficulty(SCREEN,get_font,main_menu):
                     main_menu()
                 #if easy is pressed, begin easy mode function
                 if DIFF_EASY.checkForInput(DIFF_MOUSE_POS):
-                    easy_mode()
+                    easy_mode_console(SCREEN, get_font,main_menu)
                 #if hard button is pressed, begin hard mode function (we don't have a hard mode, so they both do easy)
                 if DIFF_HARD.checkForInput(DIFF_MOUSE_POS):
                     game_over_lose(SCREEN,get_font,main_menu)
