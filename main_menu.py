@@ -10,8 +10,10 @@ pygame.display.set_caption("Miner Odyssey")
 BG = pygame.image.load("Assets/caveMenu.png")
 
 
-def get_font(size): # Returns Press-Start-2P in the desired size
+def get_font(size): # Returns font 1 in the desired size
     return pygame.font.Font("Assets/font.ttf", size)
+def get_font2(size): # returns font 2 in desired size
+    return pygame.font.Font("Assets/creditsFont.ttf", size)
 
 def play():
     while True:
@@ -49,24 +51,24 @@ def credits():
 
         SCREEN.fill("white")
 
-        CREDITS_TEXT = get_font(45).render("This game was coded by: "
+        CREDITS_TEXT = get_font2(80).render("This game was coded by: "
         , True, "Black")
-        CREDITS_TEXT2 = get_font(25).render("Kellen Mezines, Calen Carter, Jack Holland,"
+        CREDITS_TEXT2 = get_font2(45).render("Kellen Mezines, Calen Carter, Jack Holland,"
         , True, "Black")
-        CREDITS_TEXT3 = get_font(25).render("and Riley Fuller"
+        CREDITS_TEXT3 = get_font2(45).render("and Riley Fuller"
         , True, "Black")
-        CREDITS_TEXT4 = get_font(15).render("Riley Fuller (Drip) - Level Design, Level Tester, Marketing Lead"
+        CREDITS_TEXT4 = get_font2(30).render("Riley Fuller (Drip) - Level Design, Level Tester, Marketing Lead"
         , True, "Blue")
-        CREDITS_TEXT5 = get_font(15).render("Calen Carter (Bluto) - Level Design, Level Tester"
+        CREDITS_TEXT5 = get_font2(30).render("Calen Carter (Bluto) - Level Design, Level Tester"
         , True, "Red")
-        CREDITS_TEXT6 = get_font(15).render("Kellen Mezines (Vibe)- UI/UX Design, Development"
+        CREDITS_TEXT6 = get_font2(30).render("Kellen Mezines (Vibe)- UI/UX Design, Development"
         , True, "Purple")
-        CREDITS_TEXT7 = get_font(15).render("Jack Holland (Redwood) - Development"
+        CREDITS_TEXT7 = get_font2(30).render("Jack Holland (Redwood) - Development"
         , True, "Green")
         
         CREDITS_RECT = CREDITS_TEXT.get_rect(center=(640, 30))
         CREDITS_RECT2 = CREDITS_TEXT2.get_rect(center=(640, 90))
-        CREDITS_RECT3 = CREDITS_TEXT3.get_rect(center=(640, 120))
+        CREDITS_RECT3 = CREDITS_TEXT3.get_rect(center=(640, 130))
         CREDITS_RECT4 = CREDITS_TEXT4.get_rect(center=(640, 250))
         CREDITS_RECT5 = CREDITS_TEXT5.get_rect(center=(640, 300))
         CREDITS_RECT6 = CREDITS_TEXT6.get_rect(center=(640, 350))
@@ -81,7 +83,7 @@ def credits():
         SCREEN.blit(CREDITS_TEXT7, CREDITS_RECT7)
 
         OPTIONS_BACK = Button(image=None, pos=(640, 600), 
-                            text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
+                            text_input="BACK", font=get_font2(75), base_color="Black", hovering_color="Green")
 
         OPTIONS_BACK.changeColor(CREDITS_MOUSE_POS)
         OPTIONS_BACK.update(SCREEN)
