@@ -333,16 +333,111 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
 
 #IF WEST and SOUTH
           elif(map[pROW - 1, pCOL] == ' ' and map[pROW, pCOL - 1] == ' '):
-            asdasd
+            previous_step = (pROW, pCOL)
+            if p_item[1] >= 1:
+                print("You have 3 options: ")
+                print("Option 1: Go WEST")
+                print("Option 2: Go SOUTH")
+                print("Option 3: Light Torch")
+                choice = input("You select: ")
+                while(choice != '1' or choice != '2' or choice != '3'): #repeat until valid option is selected
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go WEST
+                  map[curr_point] = 0
+                  pROW = pROW - 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
+                else:
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
+            elif p_item[0] == 0: #If no torches
+                print("You have 2 options: ")
+                print("Option 1: Go EAST")
+                print("Option 2: Go SOUTH")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input()
+                if choice == '1': #go WEST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
+            
 #IF EAST and SOUTH
           elif(map[pROW + 1, pCOL] == ' ' and map[pROW, pCOL - 1] == ' '):
-            asd
+            previous_step = (pROW, pCOL)
+            if p_item[1] >= 1:
+                print("You have 3 options: ")
+                print("Option 1: Go EAST")
+                print("Option 2: Go SOUTH")
+                print("Option 3: Light Torch")
+                choice = input("You select: ")
+                while(choice != '1' or choice != '2' or choice != '3'): #repeat until valid option is selected
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go EAST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
+                else:
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
+            elif p_item[0] == 0: #If no torches
+                print("You have 2 options: ")
+                print("Option 1: Go EAST")
+                print("Option 2: Go SOUTH")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input()
+                if choice == '1': #go EAST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
 #IF NORTH and SOUTH
-          elif(map[pROW + 1, pCOL] == ' ' and map[pROW - 1, pCOL] == ' '):
-            asdas
+          elif(map[pROW, pCOL + 1] == ' ' and map[pROW, pCOL - 1] == ' '):
+            previous_step = (pROW, pCOL)
+            if p_item[1] >= 1:
+                print("You have 3 options: ")
+                print("Option 1: Go NORTH")
+                print("Option 2: Go SOUTH")
+                print("Option 3: Light Torch")
+                choice = input("You select: ")
+                while(choice != '1' or choice != '2' or choice != '3'): #repeat until valid option is selected
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
+                else:
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
+            elif p_item[0] == 0: #If no torches
+                print("You have 2 options: ")
+                print("Option 1: Go NORTH")
+                print("Option 2: Go SOUTH")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input()
+                if choice == '1': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
+                elif choice == '2': #go SOUTH
+                  map[curr_point] = 0
+                  pCOL = pCOL - 1
 
 #If WEST AND EAST AVALIABLE
-          elif ((pROW - 1, pCOL) = ' ' and (pROW - 1, pCOL) = ' '):
+          elif map[pROW - 1, pCOL] = ' ' and map[pROW + 1, pCOL] = ' ':
+            previous_step = (pROW, pCOL)
             if p_item[1] >= 1:
                 print("You have 3 options: ")
                 print("Option 1: Go WESTT")
@@ -368,58 +463,148 @@ while (Selection != '1' or Selection != '2' or Selection != '3'):
                 choice = input()
                 while(choice != '1' or choice != '2'):
                   choice = input()
-                  if choice == '1': #go WEST
-                    map[curr_point] = 0
-                    pROW = pROW - 1
-                  elif choice == '2': #go EAST
-                    map[curr_point] = 0
-                    pROW = pROW + 1
+                if choice == '1': #go WEST
+                  map[curr_point] = 0
+                  pROW = pROW - 1
+                elif choice == '2': #go EAST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
 
 
                 
 
 
 #IF WEST AND NORTH
-          elif ((prow - 1, pCOL) = ' ' and (pROW, pCOL + 1) = ' '):#If WEST and NORTH
+          elif (map[prow - 1, pCOL] = ' ' and map[pROW, pCOL + 1] = ' '): #If WEST and NORTH
+            previous_step = (pROW, pCOL)
             if p_item[1] >= 1:
-                print("You have 4 options: ")
+                print("You have 3 options: ")
                 print("Option 1: Go WEST")
                 print("Option 2: Go NORTH")
                 print("Option 3: Light Torch")
+                choice = input("You select: ")
+                while(choice != '1' or choice != '2' or choice != '3'): #repeat until valid option is selected
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go WEST
+                  map[curr_point] = 0
+                  pROW = pROW - 1
+                elif choice == '2': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
+                else:
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
             elif p_item[0] == 0: #If no torches
                 print("You have 2 options: ")
                 print("Option 1: Go WEST")
                 print("Option 2: Go NORTH")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go WEST
+                  map[curr_point] = 0
+                  pROW = pROW - 1
+                elif choice == '2': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
 
 
 # If EAST AND NORTH
-          elif ((pROW + 1, pCOL) = ' ' and (pROW, pCOL + 1) = ' '):
+          elif (map[pROW + 1, pCOL] = ' ' and map[pROW, pCOL + 1] = ' '):
+            previous_step = (pROW, pCOL)
             if p_item[1] >= 1:
                 print("You have 3 options: ")
                 print("Option 1: Go EAST")
                 print("Option 2: Go NORTH")
                 print("Option 3: Light Torch")
+                choice = input("You select: ")
+                while(choice != '1' or choice != '2' or choice != '3'): #repeat until valid option is selected
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go EAST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
+                elif choice == '2': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
+                else:
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
             elif p_item[0] == 0: #If no torches
-                print("You have 3 options: ")
+                print("You have 2 options: ")
                 print("Option 1: Go EAST")
                 print("Option 2: Go NORTH")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input("Invalid Selection new choice: ")
+                if choice == '1': #go EAST
+                  map[curr_point] = 0
+                  pROW = pROW + 1
+                elif choice == '2': #go NORTH
+                  map[curr_point] = 0
+                  pCOL = pCOL + 1
 
 
 #IF ONLY NORTH
           elif (map[pROW, pCOL + 1] == ' '):
-            if p_item[0] >= 1 :
-              if (pROW, pCOL) == p_start and p_item[1] >= 1:
+            previous_step = (pROW, pCOL)
+            if p_item[0] >= 1 :                                         #if for having torch
+              if (pROW, pCOL) == p_start and p_item[1] >= 1:            #if for if you are on starting square with dynamite
                 print("You have 3 options: ")
                 print("Option 1: Go NORTH")
                 print("Option 2: Light Torch")
                 print("Option 3: Throw Dynamite at Entrance")
+                choice = input()
+                while(choice != '1' or choice != '2' or choice != '3'):
+                  choice = input("Invalid Selection, new choice: ")
+                if choice == '1':                                         #go NORTH
+                  pCOL = pCOL + 1
+                elif choice == '2':
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)      
+                elif choice == '3':                                       #Throw Dynamite
+                  if torch_active == True:
+                    print("You lit the dynamite and cleared the entrance escaping.")
+                    escape = True
+                  else:
+                    dynamite_boom_chance = rand(0,3)
+                    if dynamite_boom_chance == 3:
+                      print("You threw the dynamite at the entrance and it exploded clearing the rubble")
+                      escape = True
+                    else:
+                      print("The dynamite didn't explode and is now wasted.")
+                      p_item[1] - 1                                       #lose dynamite
+
+#if you have a torch and no dynamite
               else:
                 print("You have 2 options: ")
                 print("Option 1: Go NORTH")
                 print("Option 2: Light Torch")
+                choice = input()
+                while(choice != '1' or choice != '2'):
+                  choice = input("Invalid Selection, new choice: ")
+                if choice == '1':
+                  pCOL = pCOL + 1
+                elif choice == '2':
+                  torch_active = True                                     #set the torch to active
+                  p_item[0] - 1                                           #lose a torch
+                  torch_time = 7                                          #start timer for torch (can edit time it lasts)
+#if you have no torch and north is only option
+            else:                                                         
+              print("You have 1 options: ")
+              print("Option 1: Go NORTH")
+              choice = input()
+              while(choice != '1'):
+                choice = input("Invalid Selection, new choice: ")
+              if choice == '1':
+                pCOL = pCOL + 1
+
             else: #If no torches or dynamite
 #IF ONLY SOUTH
-          elif(map[pROW, pCOL - 1] == ' ')
+          elif(map[pROW, pCOL - 1] == ' '):
+
 
 #IF ONLY EAST
           elif ((pROW + 1, pCOL) = ' '): 
