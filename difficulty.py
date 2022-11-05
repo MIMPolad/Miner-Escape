@@ -11,35 +11,46 @@ def Difficulty(SCREEN,get_font,main_menu):
 
         SCREEN.fill("black") #remove all rendered graphics by replacing it with a black screen
 
+        #render select difficulty text
         DIFF_TEXT = get_font(45).render("Select Difficulty", True, "White")
         DIFF_RECT = DIFF_TEXT.get_rect(center=(640, 100))
         SCREEN.blit(DIFF_TEXT, DIFF_RECT)
 
+        #render easy button
         DIFF_EASY = Button(image=None, pos=(640, 260), 
                             text_input="EASY", font=get_font(75), base_color="White", hovering_color="Green")
         DIFF_EASY.changeColor(DIFF_MOUSE_POS)
         DIFF_EASY.update(SCREEN)
 
+        #render hard button
         DIFF_HARD = Button(image=None, pos=(640, 360), 
                             text_input="HARD", font=get_font(75), base_color="White", hovering_color="Green")
         DIFF_HARD.changeColor(DIFF_MOUSE_POS)
         DIFF_HARD.update(SCREEN)
 
+        #render back button
         DIFF_BACK = Button(image=None, pos=(640, 560), 
                             text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
         DIFF_BACK.changeColor(DIFF_MOUSE_POS)
         DIFF_BACK.update(SCREEN)
 
+        #check for events
         for event in pygame.event.get():
+            #if x is pressed, close the console
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN:
+                #if back is pressed, go to main menu
                 if DIFF_BACK.checkForInput(DIFF_MOUSE_POS):
                     main_menu()
+                #if easy is pressed, begin easy mode function
                 if DIFF_EASY.checkForInput(DIFF_MOUSE_POS):
                     game_over_lose(SCREEN,get_font,main_menu)
+                #if hard button is pressed, begin hard mode function
                 if DIFF_HARD.checkForInput(DIFF_MOUSE_POS):
                     game_over_win(SCREEN,get_font,main_menu)
 
+        #render everything
         pygame.display.update()
