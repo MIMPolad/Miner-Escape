@@ -47,10 +47,10 @@ def Difficulty(SCREEN,get_font,main_menu):
                     main_menu()
                 #if easy is pressed, begin easy mode function
                 if DIFF_EASY.checkForInput(DIFF_MOUSE_POS):
-                    game_over_lose(SCREEN,get_font,main_menu)
-                #if hard button is pressed, begin hard mode function
+                    easy_mode(SCREEN,get_font,main_menu)
+                #if hard button is pressed, begin hard mode function (we don't have a hard mode, so they both do easy)
                 if DIFF_HARD.checkForInput(DIFF_MOUSE_POS):
-                    game_over_win(SCREEN,get_font,main_menu)
+                    game_over_lose(SCREEN,get_font,main_menu)
 
         #render everything
         pygame.display.update()
