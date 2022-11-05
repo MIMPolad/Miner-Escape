@@ -5,11 +5,39 @@ import random
 #
 #
 
+lROOMS = [(3, 12), (3, 36), (12, 9), (13,13), (14, 17), (14, 31), (20, 7)]
+cPS = [(0, 17), (4, 33), (6, 20), (13, 24), (3, 28)]
+dENDS = [(0, 24), (0, 33), (6, 33), (11, 17), (13, 36), (20, 24)]
+curr_point = (0,0)
+
 def main():
-	startmap()
+
+	
+	cave = [[0,0,0,3,0,0,0,0,0,0,0,0,0,1,1,1,1,4,1,1,1,1,1,1,5,0,0,0,0,0,0,0,0,5,0,0,0,0]
+	[0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,1,0,0,0,0,0,0,2,1,0,0,0,1,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0]
+	[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,1,1,4,1,1,3,0]
+	[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,4,1,1,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0]
+	[0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
+	[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,9,1,1,1,1,0,0,0,0]
+	[0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,3]
+	[0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[0,0,0,1,0,0,0,3,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0]
+	[0,0,1,1,1,1,1,1,0,0,0,0,1,2,0,0,0,0,0,0,0,0,1,1,4,0,0,0,4,1,1,1,1,1,1,1,5,0]
+	[0,0,1,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,2,0,0,0,0,0,0]
+	[0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[-1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,3,0]
+	[0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[0,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[0,1,1,1,1,0,0,2,0,0,0,0,0,0,0,1,3,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
 	p_item = [0, 0, 0] #Item array: torches, dynamite, pickaxe
 	start_location = (16, 0) #Starting location for the mine
-	step = 1 #The amount of steps (turns) the player has taken
+	steps = 1 #The amount of steps (turns) the player has taken
 	escape = False #lcv to check if miner found the exit
 	checkpoint = start_location #Init cp is just the start pos
 	checkpoint_curr_steps = 0 #This is the num of steps from previous cp
@@ -26,13 +54,11 @@ def main():
 	playing = False #bool to actually start the game
 	#This is where vibe will implement the menu functionality
 
-	lROOMS = [(3, 12), (3, 36), (12, 9), (13,13), (14, 17), (14, 31), (20, 7)]
-	cPS = [(0, 17), (4, 33), (6, 20), (13, 24), (3, 28)]
-	dENDS = [(0, 24), (0, 33), (6, 33), (11, 17), (13, 36), (20, 24)]
+	
 
-    victory = False #We return this to see if we print death or win screen
+	victory = False #We return this to see if we print death or win screen
 
-	while(!(escape) and !(death)):
+	while( not(escape) and not(death)):
 		#move first, then check location
 		#check if on edge of array
 		#bounds for up-down val
@@ -59,7 +85,7 @@ def main():
 			down_opt = True
 		if(move_left and (cave[getXCoord - 1][getYCoord] == 1)):
 			left_opt = True
-		if(move_right and (cave[getXCoord + 1][getYCoord]) == 1)):
+		if(move_right and (cave[getXCoord + 1][getYCoord] == 1)):
 			right_opt = True
 
 		moves[0] = up_opt
@@ -73,7 +99,7 @@ def main():
 				move_opt += 1
 		
 		choice = -1
-		while(choice < 0 || > 4):
+		while(choice < 0 or choice > 4):
 			if(move_opt == 4):
 				print("You have 4 Options:")
 				print("Option 1: EAST")
@@ -129,59 +155,45 @@ def main():
 				elif(moves[3]):
 					print("Option 4: SOUTH")
 			else:
+				pass
 				#I don't believe we should be able to make it here, but if we do fuck
-			
-			"""
-			if(p_item[0] > 0):
-				print("Additional Option 5: light a torch")
-			"""
 			#choice = -1
 			usrIn = False
 
 			#This while loop checks the validity of their input choice, making sure we can move
 			while(usrIn != True):
 				choice = input(int())
-				"""
-				if(choice == 5):
-					if(p_item[0] == 0):
-						print("Please enter a different choice: ")
-					else
-						usrIn == True
-				"""
 				if(moves[choice - 1] != True):
 					print("Please enter a different choice: ")
 				elif(moves[choice - 1]):
 					usrIn == True
 				else:
+					pass
 					#I don't think we should get here either but fuck
 			print("Your choice was:", choice)
 		#Move east (up)
 		#previous_step = curr_point
 		if(choice == 1):
 			previous_step = curr_point
-			pROW--
+			pROW = pROW - 1
 			curr_point = (pROW, pCOL)
 		#move west (down)
 		elif(choice == 2):
 			previous_step = curr_point
-			pROW++
+			pROW = pROW + 1
 			curr_point = (pROW, pCOL)
 		#move north (right)
 		elif(choice == 3):
 			previous_step = curr_point
-			pCOL++
+			pCOL = pCOL +1
 			curr_point = (pROW, pCOL)
 		#move south (left)
 		elif(choice == 4):
 			previous_step = curr_point
-			pCOL--
+			pCOL = pCOL -1
 			curr_point = (pROW, pCOL)
-		"""
-		#torch choice
-		elif(choice == 5):
-			#start torch
-		"""
 		else:
+			pass
 			#We should never reach here, but again fuck
 
 		#Check if the new room is an item room, cp, or death room
@@ -202,16 +214,16 @@ def main():
 			loot = random.randint(0,10)
 			if(loot <= 4):
 				print("You find a torch.")
-				p_item[0]++
-				tFound++
-			elif(loot > 4 and < 9):
+				p_item[0] = p_item[0] + 1
+				tFound = tFound + 1
+			elif(loot > 4 and loot < 9):
 				print("You found a stick of dynamite.")
-				p_item[1]++
-				dFound++
+				p_item[1]+= 1
+				dFound+= 1
 			elif(loot == 9):
 				print("You found a pickaxe.")
-				p_item[2]++
-				pFound++
+				p_item[2]+= 1
+				pFound+= 1
 			else:
 				print("You didn't find anything.")
 
@@ -222,7 +234,7 @@ def main():
 				print("Option 2: NO")
 				choicePick = -1
 				while(choicePick != 1 and choicePick != 2):
-				    choicePick = input(int())
+					choicePick = input(int())
 					if(choicePick != 1 and choicePick != 2):
 						print("Please choose a valid option.")
 				if(choicePick == 1):
@@ -234,15 +246,16 @@ def main():
 						escape = True
 					elif(steps > 300):
 						print("While toiling away at the entrance, you slowly become weak. Never seeing the light again, you die of exhaustion.")
-					    death = True
+						death = True
 						victory = False
 					else:
-						#We should never reach this part of the code
+						pass
+				#We should never reach this part of the code
 				else:
 					print("You continue with the pick in hand.")
 
 			#if they have the dynamite and no torch
-			if(p_item[1] and !(death) and !(p_item[0]) and dFound):
+			if(p_item[1] and not(death) and not(p_item[0]) and dFound):
 				print("With your stick of dynamite, would you like to go back to the entrance and attempt to escape?")
 				print("Option 1: YES")
 				print("Option 2: NO")
@@ -274,7 +287,7 @@ def main():
 								victory = True
 								escape = True
 							else:
-								p_item[1]--
+								p_item[1]-= 1
 								print("The dynamite hit the wall but nothing happened, upon inspection, you see the stick broke and is useless.")
 								#re-explore or go back to where they came from
 								print("Would you like to got back to the last checkpoint, or try exploring again?")
@@ -288,7 +301,7 @@ def main():
 								if(exChoice == 1):
 									#
 									curr_point = checkpoint
-									steps = steps + (steps - checkpoint_current_steps)
+									steps = steps + (steps - checkpoint_curr_steps)
 								else:
 									startmap()
 						elif(choiceNoTorch == 2):
@@ -304,12 +317,12 @@ def main():
 							if(exChoice == 1):
 								#
 								curr_point = checkpoint
-								steps = steps + (steps - checkpoint_current_steps)
+								steps = steps + (steps - checkpoint_curr_steps)
 							else:
 								startmap()
 
 			#if they have a torch and dynamite
-			if(p_item[1] and !(death) and p_item[0] and dFound):
+			if(p_item[1] and not(death) and p_item[0] and dFound):
 				print("With your stick of dynamite, would you like to go back to the entrance and attempt to escape?")
 				print("Option 1: YES")
 				print("Option 2: NO")
@@ -343,20 +356,21 @@ def main():
 		elif(Dead_End(curr_point)):
 			#implement code for dead end
 			print("You've come to a dead end, you retrace your steps back to the checkpoint.")
-            curr_point = checkpoint
-            step_count = step_count + (step_count - checkpoint_curr_steps)
+			curr_point = checkpoint
+			step_count = step_count + (step_count - checkpoint_curr_steps)
 
 		#next check if the secret exit is found
-		elif(win(curr_point)):
+		elif(Win(curr_point)):
 			victory = True
 			escape = True
 
 		#in this case, the room is normal, and I suppose we continue on normally
 		else:
+			pass
 			#dunno if we need any code really, might have to reinitialize other vars
 
 		#increase turn iterator
-		steps++
+		steps+= 1
 		if(steps == num_turns):
 			print("You ran out of oxygen and died!")
 			death = True
@@ -365,92 +379,89 @@ def main():
 	#end of main, returns if we win or not
 	return victory
 
-"""
-Here are gonna be the bool funcs we use to handle the main
 
-"""
 #Check to see if the room will kill you
 #DBG MAKE SURE THE ROOMS ARE CORRECT POS
 def Kill_Room(curr_point):
-	if(curr_point == (0, 3)):
-		print("You were devoured by cannibals!")
-		return True
-	elif(curr_point == (3, 18)):
-		print("You were crushed by boulders!")
-		return True
-	elif(curr_point == (4, 36)):
-		print("You were attacked by poisonous spiders!")
-		return True
-	elif(curr_point == (10, 38)):
-		print("The floor breaks away before you, you fall to your death!")
-		return True
-	elif(curr_point == (12, 7)):
-		print("You were impaled by a falling stalactite!")
-		return True
-	elif(curr_point == (17, 36)):
-		print("The ceiling caves in above you, water fills the room, drowning you!")
-		return True
-	elif(curr_point == (20, 16)):
-		print("You were ran over by a runaway mine cart!")
-		return True
-    else:
-		return False
-
-#Check to see if the room is a loot room
-def Loot_Room(curr_point):
-	for x in range(6):
-		if(lROOMS[x] == curr_point):
+		if(curr_point == (0, 3)):
+			print("You were devoured by cannibals!")
 			return True
-	return False
+		elif(curr_point == (3, 18)):
+			print("You were crushed by boulders!")
+			return True
+		elif(curr_point == (4, 36)):
+			print("You were attacked by poisonous spiders!")
+			return True
+		elif(curr_point == (10, 38)):
+			print("The floor breaks away before you, you fall to your death!")
+			return True
+		elif(curr_point == (12, 7)):
+			print("You were impaled by a falling stalactite!")
+			return True
+		elif(curr_point == (17, 36)):
+			print("The ceiling caves in above you, water fills the room, drowning you!")
+			return True
+		elif(curr_point == (20, 16)):
+			print("You were ran over by a runaway mine cart!")
+			return True
+		else:
+			return False
+
+	#Check to see if the room is a loot room
+def Loot_Room(curr_point):
+		for x in range(6):
+			if(lROOMS[x] == curr_point):
+				return True
+		return False
 
 def Check_Point(curr_point):
-	for x in range(4):
-		if(cPS[x] == curr_point):
-			return True
-	return False
-
-def Dead_End(curr_point):
-	for x in range(5):
-		if(dENDS[x] == curr_point):
-			return True
-	return False
-
-def Win(curr_point):
-	if(curr_point == 8,29):
-		return True
-	else:
+		for x in range(4):
+			if(cPS[x] == curr_point):
+				return True
 		return False
 
+def Dead_End(curr_point):
+		for x in range(5):
+			if(dENDS[x] == curr_point):
+				return True
+		return False
+
+def Win(curr_point):
+		if(curr_point == 8,29):
+			return True
+		else:
+			return False
+
 def getXCoord():
-	return curr_point[1]
+		return curr_point[1]
 
 def getYCoord():
-	return curr_point[0]
+		return curr_point[0]
 
-#should reinitialize map and cp vars, but leave steps the same
+	#should reinitialize map and cp vars, but leave steps the same
 def startmap():
-	cave = [[0,0,0,3,0,0,0,0,0,0,0,0,0,1,1,1,1,4,1,1,1,1,1,1,5,0,0,0,0,0,0,0,0,5,0,0,0,0]
- [0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
- [0,0,0,0,0,1,0,0,0,0,0,0,2,1,0,0,0,1,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0]
- [0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0]
- [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,1,1,4,1,1,3,0]
- [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
- [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,4,1,1,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0]
- [0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
- [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,9,1,1,1,1,0,0,0,0]
- [0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
- [0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,3]
- [0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
- [0,0,0,1,0,0,0,3,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0]
- [0,0,1,1,1,1,1,1,0,0,0,0,1,2,0,0,0,0,0,0,0,0,1,1,4,0,0,0,4,1,1,1,1,1,1,1,5,0]
- [0,0,1,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,2,0,0,0,0,0,0]
- [0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
- [S,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
- [0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,3,0]
- [0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
- [0,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
- [0,1,1,1,1,0,0,2,0,0,0,0,0,0,0,1,3,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+		cave = [[0,0,0,3,0,0,0,0,0,0,0,0,0,1,1,1,1,4,1,1,1,1,1,1,5,0,0,0,0,0,0,0,0,5,0,0,0,0]
+	[0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,1,0,0,0,0,0,0,2,1,0,0,0,1,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0]
+	[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,1,1,4,1,1,3,0]
+	[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,4,1,1,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0]
+	[0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
+	[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,9,1,1,1,1,0,0,0,0]
+	[0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+	[0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,3]
+	[0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[0,0,0,1,0,0,0,3,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0]
+	[0,0,1,1,1,1,1,1,0,0,0,0,1,2,0,0,0,0,0,0,0,0,1,1,4,0,0,0,4,1,1,1,1,1,1,1,5,0]
+	[0,0,1,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,2,0,0,0,0,0,0]
+	[0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[-1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0]
+	[0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,3,0]
+	[0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[0,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[0,1,1,1,1,0,0,2,0,0,0,0,0,0,0,1,3,1,1,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 
 if __name__ == "__main__":
-	main()
+		main()

@@ -1,6 +1,7 @@
 import pygame,sys
 from print_template import printLine
 from game_ended import *
+from main import *
 
 def easy_mode_console(SCREEN,get_font,main_menu):
     while True:
@@ -11,7 +12,7 @@ def easy_mode_console(SCREEN,get_font,main_menu):
         printLine(SCREEN,"Check your Console!", "White",45,640,300,get_font)
         printLine(SCREEN,"Good Luck!!!", "Green", 45, 640, 500, get_font)
         
-        won = True#main()
+        won = main()
         
         for event in pygame.event.get():
             #if x is pressed, close the console

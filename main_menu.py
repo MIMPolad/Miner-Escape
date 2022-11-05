@@ -1,7 +1,6 @@
 import pygame, sys
 import webbrowser
 from button import Button
-from game import *
 from credits import credits
 from difficulty import Difficulty
 

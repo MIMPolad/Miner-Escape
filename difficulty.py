@@ -3,7 +3,6 @@ from print_template import *
 from button import Button
 from game_ended import game_over_lose
 from game_ended import game_over_win
-from game import easy_mode
 from consoleGame import *
 
 def Difficulty(SCREEN,get_font,main_menu):
