@@ -1,4 +1,5 @@
 import pygame, sys
+import webbrowser
 from button import Button
 
 pygame.init()
@@ -7,6 +8,7 @@ SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Miner Odyssey")
 
 BG = pygame.image.load("Assets/caveMenu.png")
+
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("Assets/font.ttf", size)
@@ -36,8 +38,12 @@ def play():
                     main_menu()
 
         pygame.display.update()
+
+def hyperlink():
+  webbrowser.open("https://pickhacks.io/")
+
     
-def options():
+def credits():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -68,6 +74,7 @@ def main_menu():
     while True:
         SCREEN.blit(BG, (0, 0))
 
+
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(75).render("Miner Odyssey", True, "#b68f40")
@@ -75,14 +82,16 @@ def main_menu():
 
         PLAY_BUTTON = Button(image=pygame.image.load("Assets/button.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("Assets/button.png"), pos=(640, 400), 
+        CREDITS_BUTTON = Button(image=pygame.image.load("Assets/button.png"), pos=(640, 400), 
                             text_input="CREDITS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("Assets/button.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        HYPERLINK_BUTTON = Button(image = pygame.image.load("Assets/JoeMinerHead.png"),pos=(1150,600),
+                            text_input = "", font = get_font(0), base_color = "#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+        for button in [PLAY_BUTTON, CREDITS_BUTTON, QUIT_BUTTON, HYPERLINK_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(SCREEN)
         
@@ -93,11 +102,13 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     play()
-                if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    options()
+                if CREDITS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    credits()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
+                if HYPERLINK_BUTTON.checkForInput(MENU_MOUSE_POS):
+                  hyperlink()
 
         pygame.display.update()
 
