@@ -20,7 +20,7 @@ def credits(SCREEN,get_font2,main_menu):
         , True, "Red")
         CREDITS_TEXT6 = get_font2(30).render("Kellen Mezines (Vibe)- UI/UX Design, Development"
         , True, "Purple")
-        CREDITS_TEXT7 = get_font2(30).render("Jack Holland (Redwood) - Development"
+        CREDITS_TEXT7 = get_font2(30).render("Jack Holland (Redwood) - Development, Quality control Consultant"
         , True, "Green")
         
         CREDITS_RECT = CREDITS_TEXT.get_rect(center=(640, 30))

@@ -1,7 +1,7 @@
 import pygame,sys
 from button import Button
 from game_ended import game_over_lose
-#from game_ended import game_over_win
+from game_ended import game_over_win
 #from easy_mode import easy_mode
 #from hard_mode import hard_mode
 
@@ -40,6 +40,6 @@ def Difficulty(SCREEN,get_font,main_menu):
                 if DIFF_EASY.checkForInput(DIFF_MOUSE_POS):
                     game_over_lose(SCREEN,get_font,main_menu)
                 if DIFF_HARD.checkForInput(DIFF_MOUSE_POS):
-                    game_over_lose(SCREEN,get_font,main_menu)
+                    game_over_win(SCREEN,get_font,main_menu)
 
         pygame.display.update()
