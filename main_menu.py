@@ -7,20 +7,18 @@ from difficulty import Difficulty
 
 pygame.init()
 
-#Set display and give form name.
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Miner Odyssey")
 
-# Create new variable that gives Cave image.
 BG = pygame.image.load("Assets/caveMenu.png")
 
-#Declare font variables (MainScreen and Credits)
+
 def get_font(size): # Returns font 1 in the desired size
     return pygame.font.Font("Assets/font.ttf", size)
 def get_font2(size): # returns font 2 in desired size
     return pygame.font.Font("Assets/creditsFont.ttf", size)
 
-#When Button is clicked, opens URL (PickHacks website)
+
 def hyperlink():
     #use webbrowser.open to open the website
   webbrowser.open("https://pickhacks.io/")
