@@ -7,8 +7,9 @@ def easy_mode_console(SCREEN,get_font,main_menu):
         SCREEN.fill("black") #remove all rendered graphics by replacing it with a black screen
 
         #render select difficulty text
-        printLine(SCREEN,"Easy Mode Started, Check your Console!", "White", 45, 640, 100, get_font)
-        printLine(SCREEN,"Good Luck!!!", "Green", 45, 640, 150, get_font)
+        printLine(SCREEN,"Easy Mode Started,", "White", 45, 640, 200, get_font)
+        printLine(SCREEN,"Check your Console!", "White",45,640,300,get_font)
+        printLine(SCREEN,"Good Luck!!!", "Green", 45, 640, 500, get_font)
         
         won = True#main()
         
