@@ -5,16 +5,18 @@ Selection = input()
 do
   match
     case "1"
-      array[]
-      p_start = (16,0)
-      p_item = [ torch, ]
-      location = (16, 0)
-      escape = false
-      FLAG DICTIONARY
-      step_count = 1
-      num_turns = 400
-      currROW = 16
-      currCOL = 0
+      //VARIABLES
+        array[]
+        p_start = (16,0)
+        p_item = [ torch, ]
+        location = (16, 0)
+        escape = false
+        FLAG DICTIONARY
+        step_count = 1
+        num_turns = 400
+        currROW = 16
+        currCOL = 0
+      
     case "2"
     case "3"
       quit = 
